@@ -25,45 +25,65 @@ function newAnimeBttns() {
 // Calling the function to show the initial topics
 newAnimeBttns();
 
+// $("#animeBttns").on("click", function() {
+//     displayGifs();
+// });
 // Displaying gifs
-function displayGifs() {
-    var topic = $(this).attr("#animeBttns")
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&tag=" + topic + "&limit=10";
-    $.ajax({
+$(".bttn").on("click", function() {
+    var topic = $(this).attr("data")
+    console.log(topic);
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10";
+    $.ajax({   
         url: queryURL,
         method: "GET"
     }).then(function(response) {
         console.log(queryURL);
         console.log(response);
-    })
-
+    
     var results = response.data;
 
     for (var a = 0; a < results.length; a++) {
-        var newBttn = $("<div>");
-        
+        var newGif = $("<div>");
+        newGif.addClass("newGif");
+        // newGif.attr("data", results[a]);
+        var animeImg = $("<img>");
+        var stillimg = results[a].images.fixed_width_still.url;
+        var animateimg = results[a].images.fixed_width.url;
+        animeImg.attr("data-state", "still") 
+        animeImg.attr("data-still", stillimg);
+        animeImg.attr("data-animate", animateimg);
+        newGif.append(animeImg);
+        console.log(newGif);
+        $("#anime-gif").prepend(newGif);
     }
+})
+
+// Click and change the data-state from still to animate
+
+// results[i].rating !== "r" && results[i].rating !== "pg-13"
 
 // Function to update state of gif
-    function updateState(state, ele) {
-        $(ele).attr("src", $(ele).attr("data-" + state));
-        $(ele).attr("data-state", state);
+    function updateState(desiredState, ele) {
+        $(ele).attr("src", $(ele).attr("data-" + desiredState));
+        $(ele).attr("data-state", desiredState);
+        // $(this).attr("src", $(this).attr("data-" + state));
+        // $(this).attr("data-state", state);
       }
       $(".gif").on("click", function () {
         // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-        var state = $(this).attr("data-state");
+        var currentState = $(this).attr("data-state");
         var dAnimate = $(this).attr("data-animate")
         // If the clicked image's state is still, update its src attribute to what its data-animate value is.
         // Then, set the image's data-state to animate
         // Else set src to the data-still value
-        if (state === "still") {
+        if (currentState === "still") {
           updateState('animate', this);
         } else {
           updateState('still', this);
         }
       });
 
-};
+});
 
 
 // $("button").on("click", function() {
