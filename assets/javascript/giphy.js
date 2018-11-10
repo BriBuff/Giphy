@@ -27,6 +27,7 @@ newAnimeBttns();
 
 // Displaying gifs
 function displayGifs() {
+    var topic = $(this).attr("#animeBttns")
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&tag=" + topic + "&limit=10";
     $.ajax({
         url: queryURL,
@@ -34,7 +35,14 @@ function displayGifs() {
     }).then(function(response) {
         console.log(queryURL);
         console.log(response);
-    });
+    })
+
+    var results = response.data;
+
+    for (var a = 0; a < results.length; a++) {
+        var newBttn = $("<div>");
+        
+    }
 
 // Function to update state of gif
     function updateState(state, ele) {
