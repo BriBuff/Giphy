@@ -1,25 +1,31 @@
-var topics = ["anime", "Full Metal Alchemist", "DragonBall Z", "Fruits Basket", "Ouran High School Host Club"];
+// Gif "topic" buttons
+var topics = ["Anime", "Yuri on Ice!", "Full Metal Alchemist", "DragonBall Z", "Fruits Basket", "Ouran High School Host Club"];
 
-// pulling gifs
+// Pulling gifs
 
+for (var i= 0; i < topics.length; i++) {
+    var topicBttn = $("<button>");
+    topicBttn.addClass(".bttn");
+    topicBttn.attr("data", topics[i]);
+    topicBttn.text(topics[i]);
+    $("#animeBttns").append(topicBttn);
+}
+
+var topic = 
+
+// Displaying gifs
 function displayGifs() {
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10&tag=" + topics;
-
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&tag=" + topic + "&limit=10";
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        // var animeGif = $("<div>");
-        // var rating = response.rating;
-
-
-
     });
 
 };
 
-// making buttons
+// Making new buttons
 function animeBttns() {
     $("#animeBttns").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -32,7 +38,8 @@ function animeBttns() {
 };
 
 
-// click function
+// click function- display gifs, limit rating, (call functions above?)
 $("#add-anime").on("click", function() {
-
+    displayGifs();
+    animeBttns();
 });
