@@ -60,6 +60,7 @@ $(".bttn").on("click", function() {
 
         // Function to update state of gif
         function updatedState() {
+            var state = "data-state";
             $(".newGif").on("click", function(){
                 if (state === "still") {
                     updatedState(animateimg, this);
@@ -70,6 +71,7 @@ $(".bttn").on("click", function() {
                 }
             })
         }
+        updatedState()
 }
 })
 });
