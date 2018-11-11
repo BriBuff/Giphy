@@ -27,7 +27,7 @@ function newAnimeBttns() {
 newAnimeBttns();
 
 // Displaying gifs on a click for any of the buttons above.
-$(".bttn").on("click", function() {
+$(document).on("click", ".bttn", function() {
     var topic = $(this).attr("data")
     console.log(topic);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10";
