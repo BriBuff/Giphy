@@ -61,21 +61,23 @@ $(".bttn").on("click", function() {
             $("#anime-gif").prepend(newGif);
         }
 
-
-        // Function to update state of gif
-        // function updatedState() {
-        //     var state = "data-state";
-        //     $(".newGif").on("click", function(){
-        //         if (state === "still") {
-        //             updatedState(animateimg, this);
-        //         }
-        
-        //         else {
-        //             updatedState(stillimg);
-        //         }
-        //     })
-        // }
-        // updatedState()
+        function updateState(state, ele) {
+            $(ele).attr("src", $(ele).attr("data-" + state));
+            $(ele).attr("data-state", state);
+          }
+          $(".newGif").on("click", function () {
+            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+            var state = $(this).attr("data-state");
+            var dAnimate = $(this).attr("data-animate")
+            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+            // Then, set the image's data-state to animate
+            // Else set src to the data-still value
+            if (state === "still") {
+              updateState('animate', this);
+            } else {
+              updateState('still', this);
+            }
+          });
 }
 })
 });
