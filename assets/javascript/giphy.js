@@ -59,19 +59,19 @@ $(".bttn").on("click", function() {
         }
 
         // Function to update state of gif
-        function updatedState() {
-            var state = "data-state";
-            $(".newGif").on("click", function(){
-                if (state === "still") {
-                    updatedState(animateimg, this);
-                }
+        // function updatedState() {
+        //     var state = "data-state";
+        //     $(".newGif").on("click", function(){
+        //         if (state === "still") {
+        //             updatedState(animateimg, this);
+        //         }
         
-                else {
-                    updatedState(stillimg);
-                }
-            })
-        }
-        updatedState()
+        //         else {
+        //             updatedState(stillimg);
+        //         }
+        //     })
+        // }
+        // updatedState()
 }
 })
 });
