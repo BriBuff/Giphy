@@ -57,24 +57,19 @@ $(".bttn").on("click", function() {
             console.log(newGif);
             $("#anime-gif").prepend(newGif);
         }
+
+        // Function to update state of gif
+        function updatedState() {
+            $(".newGif").on("click", function(){
+                if (state === "still") {
+                    updatedState(animateimg, this);
+                }
+        
+                else {
+                    updatedState(stillimg);
+                }
+            })
+        }
 }
 })
 });
-// Click and change the data-state from still to animate
-
-// Function to update state of gif
-
-function updatedState() {
-    var gifState = $(this).attr("data-state");
-    var gifAnimate = $(this).attr("data-animate");
-
-    $(".newGif").on("click", function(){
-        if (state === "still") {
-            updatedState(animateimg, this);
-        }
-
-        else {
-            updatedState(stillimg);
-        }
-    })
-}
