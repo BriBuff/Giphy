@@ -44,23 +44,23 @@ $(".bttn").on("click", function() {
         if (results[a].rating !== "r" && results[a].rating !== "pg-13") {
             var newGif = $("<div>");
             newGif.addClass("newGif");
-            var gifRating = $("<p>").text("Rating: " + results[a].rating);
-            // newGif.attr("data", results[a]);
+            var gifRating = $("<p>").text("Rating: " + results[a].rating.toUpperCase());
             var gifimg = results[a].images.fixed_width_still.url;
             var animeImg = $("<img>");
             animeImg.attr("src", gifimg);
             animeImg.attr("alt", "animeGif");
-            // var stillimg = results[a].images.fixed_width_still.url;
-            // var animateimg = results[a].images.fixed_width.url;
-            // animeImg.attr("data-state", "still"); 
-            // animeImg.attr("data-still", stillimg);
-            // animeImg.attr("data-animate", animateimg);
+            var stillimg = results[a].images.fixed_width_still.url;
+            var animateimg = results[a].images.fixed_width.url;
+            animeImg.attr("data-state", "still"); 
+            animeImg.attr("data-still", stillimg);
+            animeImg.attr("data-animate", animateimg);
             newGif.append(gifRating);
             newGif.append(animeImg);
             console.log(animeImg);
             console.log(newGif);
             $("#anime-gif").prepend(newGif);
         }
+
 
         // Function to update state of gif
         // function updatedState() {
