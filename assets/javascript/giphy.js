@@ -90,7 +90,7 @@ $(".bttn").on("click", function() {
 //   $(this).attr("src", $(this).attr("data-still"));
 //   $(this).attr("data-state", "still");
 // }
-});
+// });
 
 
 
