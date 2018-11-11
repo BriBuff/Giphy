@@ -25,10 +25,7 @@ function newAnimeBttns() {
 // Calling the function to show the initial topics
 newAnimeBttns();
 
-// $("#animeBttns").on("click", function() {
-//     displayGifs();
-// });
-// Displaying gifs
+// Displaying gifs on a click for any of the buttons above.
 $(".bttn").on("click", function() {
     var topic = $(this).attr("data")
     console.log(topic);
@@ -62,28 +59,41 @@ $(".bttn").on("click", function() {
         }
 }
 })
-
+});
 // Click and change the data-state from still to animate
 
 // Function to update state of gif
+
+function updatedState() {
+    var gifState = $(this).attr("data-state");
+    var gifAnimate = $(this).attr("data-animate");
+
+    $(".newGif").on("click", function(){
+        if (state === "still") {
+            updatedState(animateimg, this);
+        }
+
+        else {
+            updatedState(stillimg);
+        }
+    })
+}
     // function updateState(desiredState, ele) {
     //     $(ele).attr("src", $(ele).attr("data-" + desiredState));
     //     $(ele).attr("data-state", desiredState);
     //     // $(this).attr("src", $(this).attr("data-" + state));
     //     // $(this).attr("data-state", state);
     //   }
-      $(".newGif").on("click", function () {
-        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-        var currentState = $(this).attr("data-still");
-        var dAnimate = $(this).attr("data-animate");
-        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-        // Then, set the image's data-state to animate
-        // Else set src to the data-still value
-        if (currentState === "still") {
-          updateState('animate', this);
-        } else {
-          updateState('still', this);
-        }
-      });
-
-});
+    //   $(".newGif").on("click", function () {
+    //     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    //     var currentState = $(this).attr("data-still");
+    //     var dAnimate = $(this).attr("data-animate");
+    //     // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    //     // Then, set the image's data-state to animate
+    //     // Else set src to the data-still value
+    //     if (currentState === "still") {
+    //       updateState('animate', this);
+    //     } else {
+    //       updateState('still', this);
+    //     }
+    //   });
