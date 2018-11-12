@@ -30,7 +30,7 @@ newAnimeBttns();
 $(document).on("click", ".bttn", function() {
     var topic = $(this).attr("data")
     console.log(topic);
-    var queryURL = "//api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10";
 
     $.ajax({   
         url: queryURL,
