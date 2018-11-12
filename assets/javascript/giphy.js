@@ -31,6 +31,7 @@ $(document).on("click", ".bttn", function() {
     var topic = $(this).attr("data")
     console.log(topic);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=sTY8u4svT7q5V5kmbOFxWn7S1SyfRB3b&limit=10";
+
     $.ajax({   
         url: queryURL,
         method: "GET"
@@ -38,67 +39,58 @@ $(document).on("click", ".bttn", function() {
         console.log(queryURL);
         console.log(response);
     
-    var results = response.data;
-    console.log(results);
+     var results = response.data;
+     console.log(results);
 
 // For loop for getting rid of R/PG-13 Gifs, adding stills of Gifs, and adding rating to the Gifs.
     
     for (var a = 0; a < results.length; a++) {
         if (results[a].rating !== "r" && results[a].rating !== "pg-13") {
+
             var newGif = $("<div>");
             newGif.addClass("newGif");
-            var gifRating = $("<p>").text("Rating: " + results[a].rating.toUpperCase());
+
             var gifimg = results[a].images.fixed_width_still.url;
+            
             var animeImg = $("<img>");
-            animeImg.attr("src", gifimg);
+            animeImg.attr("src", results[a].images.fixed_width_still.url);
+            animeImg.addClass("animeGIF");
             animeImg.attr("alt", "animeGif");
+
             var stillimg = results[a].images.fixed_width_still.url;
-            var animateimg = results[a].images.fixed_width.url;
             animeImg.attr("data-state", "still"); 
-            animeImg.attr("data-still", stillimg);
-            animeImg.attr("data-animate", animateimg);
-            newGif.append(gifRating);
+            animeImg.attr("data-state-still", stillimg);
+
+            var animateimg = results[a].images.fixed_width.url;
+            animeImg.attr("data-state-animate", animateimg);
+
             newGif.append(animeImg);
-            console.log(animeImg);
-            console.log(newGif);
+
+            var gifRating = $("<p>").text("Rating: " + results[a].rating.toUpperCase());
+            newGif.append(gifRating);
+
             $("#anime-gif").prepend(newGif);
         }
-
-        // function updateState(state, ele) {
-        //     $(ele).attr("src", $(ele).attr("data-" + state));
-        //     $(ele).attr("data-state", state);
-        //   }
-        //   $(".newGif").on("click", function () {
-        //     var state = $(this).attr("data-state");
-        //     var dAnimate = $(this).attr("data-animate")
-        //     if (state === "still") {
-        //       updateState('animate', this);
-        //     } else {
-        //       updateState('still', this);
-        //     }
-        //   });
-//         $(".newGif").on("click", function(){
-
-
-//             var state = $(this).attr('data-state');
-            
-          
-//            if (state === "still") {
-//   $(this).attr("src", $(this).attr("data-animate"));
-//   $(this).attr("data-state", "animate");
-// } else {
-//   $(this).attr("src", $(this).attr("data-still"));
-//   $(this).attr("data-state", "still");
-// }
-// });
-
-
-
-
-
-
-
-
-}
-})
+        }
+    })
 });
+
+    // global on-click command
+    $(document).on("click", ".animeGIF", function(){
+        var ds = this.getAttribute("data-state");
+        var urlStill = this.getAttribute("data-state-still");
+        var urlAnimate = this.getAttribute("data-state-animate");
+        console.log("ds is " + ds);
+        // if img data-state == still, change img src to value of data-state-animated (i.e. the url)
+        if (ds == "still"){
+            // change img src value to value of data-state-animate
+            $(this).attr("src", urlAnimate);
+            $(this).attr("data-state", "animate");
+        }
+        else {
+            // change img src value to value of data-state-state
+            $(this).attr("src", urlStill);
+            $(this).attr("data-state", "still");
+        }
+
+    });
