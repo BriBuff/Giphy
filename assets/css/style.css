@@ -2,3 +2,14 @@ body {
     color: darkblue;
     text-align: center;
 }
+
+.bttn, #add-anime {
+    background-color: pink;
+    color: darkblue;
+    margin-right: 10px;
+}
+
+.bttn:hover, #add-anime:hover {
+    background-color: darkblue;
+    color:pink;
+}
