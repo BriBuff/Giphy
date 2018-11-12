@@ -1,5 +1,5 @@
 // Gif "topic" buttons
-var topics = ["Anime", "Yuri on Ice!", "Full Metal Alchemist", "DragonBall Z", "Fruits Basket", "Ouran High School Host Club"];
+var topics = ["Anime", "Full Metal Alchemist", "DragonBall Z", "Fruits Basket", "Ouran High School Host Club", "Yuri on Ice!"];
 
 console.log(topics.length);
 // Pulling gifs
